@@ -77,13 +77,13 @@ int is_valid(Node* n)
             {
                for (b = columna ; b < columna + 3 ; b++)
                {               
-                  if (n->sudo[i][j] == n->sudo[a][b] && (a == i && b == j))
+                  if (n->sudo[i][j] == n->sudo[a][b] && !(a == i && b == j))
                   {
                      return 0;
                   }
                }
             }
-        }
+         }
       } 
    }
     return 1;
