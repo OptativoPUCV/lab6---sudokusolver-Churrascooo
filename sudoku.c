@@ -46,40 +46,43 @@ void print_node(Node* n){
 int is_valid(Node* n)
 {
    int i, j, k;
-   
-   for (i = 0 ; i < 9 ; i++) //Recorro la fila
+   for (i = 0 ; i < 9 ; i++) //Recorre fila
       {
-         for (j = 0 ; j < 9 ; j++) //Recorro la columna
+         for (j = 0 ; j < 9 ; j++) //Recorre columna
             {
-               if (n->sudo[i][j] == 0) //Si está vacia
+               if (n->sudo[i][j] != 0) //Si no está vacío
                {
-                  return 0;
-               }
-               //Verifico las filas
-               for (k = j+1; k < 9 ; k++)
-               {
-                  if (n->sudo[i][j] == n->sudo[i][k])
+                  for (k = 0 ; k < 9 ; k++) //Revisa si el num está en fila o columna
                   {
-                     //Si hay un número que se repite, el sudoku estará malo
-                     return 0;
+                     if (n->sudo[i][j] == n->sudo[i][k] && k != j)
+                     {
+                        //Revisa si el num está en la columna
+                        return 0;
+                     }
+                     if (n->sudo[i][j] == n->sudo[k][j] && k != i)
+                     {
+                        //Revisa si el num está en la fila
+                        return 0;
+                     }
+                     //Revisa la submatriz
+                     int a, b;
+                     int fila = (i/3) * 3;
+                     int columna = (j/3) * 3;
+                     for (a = fila ; a < fila + 3 ; a++)
+                     {
+                        for (b = columna ; b < columna + 3 ; b++)
+                        {
+                           
+                           if (n->sudo[i][j] == n->sudo[a][b] && a != i && b != j)
+                           {
+                              return 0;
+                           }
+                        }
+                     }
                   }
                }
             }
       }
-   for (j = 0 ; j < 9 ; j++) //Recorro la fila)
-   {
-      for (i = 0 ; i < 9 ; i++)
-      {
-         for (k = i+1 ; k < 9 ; k++)
-         {
-            if (n->sudo[i][j] == n->sudo[k][j])
-            {
-               //Si hay un número que se repite, el sudoku estará malo
-               return 0;
-            }
-         }
-      }
-   }
     return 1;
 }
 //-------------------------------------------------------------------
