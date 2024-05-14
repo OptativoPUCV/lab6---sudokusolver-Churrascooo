@@ -10,6 +10,10 @@ typedef struct{
 Node* createNode()
 {
    Node* n=(Node*) malloc(sizeof(Node));
+   if (n == NULL)
+   {
+      exit(EXIT_FAILURE);
+   }
    return n;
 }
 //-------------------------------------------------------------------
