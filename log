@@ -99,3 +99,14 @@ Tue 14 May 2024 06:50:38 PM UTC:
  tests:  5|3
 total_score: 35/70
 238fce6
+Tue 14 May 2024 06:52:00 PM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+sudoku.c: In function ‘is_valid’:
+sudoku.c:77:63: error: suggest parentheses around ‘&&’ within ‘||’ [-Werror=parentheses]
+   77 |                            if (n->sudo[i][j] == n->sudo[a][b] && a != i || b != j)
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+d2fb4c1
