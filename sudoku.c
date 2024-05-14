@@ -110,6 +110,7 @@ List* get_adj_nodes(Node* n)
                   free(copia);
                }
             }
+            break;
          }
       }
    }
