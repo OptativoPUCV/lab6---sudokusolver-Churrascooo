@@ -45,9 +45,7 @@ void print_node(Node* n){
 //-------------------------------------------------------------------
 int is_valid(Node* n)
 {
-   int i, j;
-   int columnas;
-   int filas;
+   int i, j, k;
    
    for (i = 0 ; i < 9 ; i++) //Recorro la fila
       {
@@ -58,24 +56,27 @@ int is_valid(Node* n)
                   return 0;
                }
                //Verifico las filas
-               for (columnas = j+1; columnas < 9 ; columnas++)
+               for (k = j+1; k < 9 ; k++)
                {
-                  if (n->sudo[i][j] == n->sudo[i][columnas])
+                  if (n->sudo[i][j] == n->sudo[i][k])
                   {
                      //Si hay un número que se repite, el sudoku estará malo
                      return 0;
                   }
-               //Verifico las columnas
-               for (filas = i+1 ; filas < 9 ; filas++)
+      for (i = 0 ; i < 9 ; i++) //Recorro la fila)
+         {
+            for (j = 0 ; k < 9 ; k++)
+               {
+                  for (k = i+1 ; k < 9 ; k++)
                   {
-                     if (n->sudo[i][j] == n->sudo[filas][j])
+                     if (n->sudo[i][j] == n->sudo[k][j])
                      {
                         //Si hay un número que se repite, el sudoku estará malo
                         return 0;
                      }
                   }
                }
-            }
+         }
       }
     return 1;
 }
