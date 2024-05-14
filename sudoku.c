@@ -46,24 +46,31 @@ void print_node(Node* n){
 int is_valid(Node* n)
 {
    int i, j;
-   for (i = 0 ; i <= 9 ; i++)
+   int columnas;
+   int filas;
+   
+   for (i = 0 ; i < 9 ; i++) //Recorro la fila
       {
-         for (j = 0 ; j <= 9 ; j++)
+         for (j = 0 ; j < 9 ; j++) //Recorro la columna
             {
-               if (n->sudo[i][j] == 0)
+               if (n->sudo[i][j] == 0) //Si está vacia
                {
                   return 0;
                }
-               else
+               //Verifico las filas
+               for (columnas = j+1; columnas < 9 ; columnas++)
                {
-                  if (n->sudo[i][j] == n->sudo[i][j+1])
+                  if (n->sudo[i][j] == n->sudo[i][columnas])
                   {
+                     //Si hay un número que se repite, el sudoku estará malo
                      return 0;
                   }
-                  else
+               //Verifico las columnas
+               for (filas = i+1 ; filas < 9 ; filas++)
                   {
-                     if (n->sudo[i][j] == n->sudo[i+1][j])
+                     if (n->sudo[i][j] == n->sudo[filas][j])
                      {
+                        //Si hay un número que se repite, el sudoku estará malo
                         return 0;
                      }
                   }
@@ -76,19 +83,21 @@ int is_valid(Node* n)
 List* get_adj_nodes(Node* n)
 {
    List* list=createList();
-   Node *copy(Node *n);
-   
-   int i, j;
-   for (i = 0; i <= 9; i++)
+   int i, j, k;
+   for (i = 0; i < 9; i++)
       {
-         for (j = 0 ; i <= 9; j++)
+         for (j = 0 ; i < 9; j++)
             {
                if (n->sudo[i][j] == 0)
                {
-                  n->sudo[i][j] = i;
-                  if (is_valid(n))
+                  for (k = 1 ; k <= 9 ; k++)
                   {
-                     list = push(list, n);
+                     if (is_valid(n))
+                     {
+                        Node *copia = copy(n);
+                        copia->sudo[i][j] = k;
+                        pushBack(list, copia)
+                     }
                   }
                }
             }

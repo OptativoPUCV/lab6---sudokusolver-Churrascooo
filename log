@@ -22,3 +22,16 @@ sudoku.c:91:27: error: void value not ignored as it ought to be
       |                           ^
 Compilation failed
 95cf33d
+Tue 14 May 2024 05:54:57 PM UTC: 
+ sudoku.c | 37 +++++++++++++++++++++++--------------
+ 1 file changed, 23 insertions(+), 14 deletions(-)
+In file included from test.c:5:
+sudoku.c: In function ‘get_adj_nodes’:
+sudoku.c:99:46: error: expected ‘;’ before ‘}’ token
+   99 |                         pushBack(list, copia)
+      |                                              ^
+      |                                              ;
+  100 |                      }
+      |                      ~                        
+Compilation failed
+1ff5ae9
