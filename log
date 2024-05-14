@@ -110,3 +110,9 @@ sudoku.c:77:63: error: suggest parentheses around ‘&&’ within ‘||’ [-Wer
 cc1: all warnings being treated as errors
 Compilation failed
 d2fb4c1
+Tue 14 May 2024 06:54:12 PM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  5|3
+total_score: 35/70
+a498cf9
