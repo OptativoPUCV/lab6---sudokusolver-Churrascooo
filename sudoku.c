@@ -48,42 +48,45 @@ int is_valid(Node* n)
 {
    int i, j, k;
    for (i = 0 ; i < 9 ; i++) //Recorre fila
+   {
+      for (j = 0 ; j < 9 ; j++) //Recorre columna
       {
-         for (j = 0 ; j < 9 ; j++) //Recorre columna
+         if (n->sudo[i][j] != 0) //Si no está vacío
+         {
+            //Verificar fila
+            for (k = 0 ; k < 9 ; k++) //Revisa si el num está en fila o columna
             {
-               if (n->sudo[i][j] != 0) //Si no está vacío
+               if (n->sudo[i][j] == n->sudo[i][k] && k != j)
                {
-                  for (k = 0 ; k < 9 ; k++) //Revisa si el num está en fila o columna
+                  return 0;
+               }
+            }
+            for (k = 0 ; k < 9 ; k++)
+            {
+               if (n->sudo[i][j] == n->sudo[k][j] && k != i)
+               {
+                  //Revisa si el num está en la fila
+                  return 0;
+               }
+            }
+            //Revisa la submatriz
+            int a, b;
+            int fila = (i/3) * 3;
+            int columna = (j/3) * 3;
+            for (a = fila ; a < fila + 3 ; a++)
+            {
+               for (b = columna ; b < columna + 3 ; b++)
+               {               
+                  if (n->sudo[i][j] == n->sudo[a][b] && (a == i && b == j))
                   {
-                     if (n->sudo[i][j] == n->sudo[i][k] && k != j)
-                     {
-                        //Revisa si el num está en la columna
-                        return 0;
-                     }
-                     if (n->sudo[i][j] == n->sudo[k][j] && k != i)
-                     {
-                        //Revisa si el num está en la fila
-                        return 0;
-                     }
-                     //Revisa la submatriz
-                     int a, b;
-                     int fila = (i/3) * 3;
-                     int columna = (j/3) * 3;
-                     for (a = fila ; a < fila + 3 ; a++)
-                     {
-                        for (b = columna ; b < columna + 3 ; b++)
-                        {
-                           
-                           if (n->sudo[i][j] == n->sudo[a][b] && !(a == i && b == j))
-                           {
-                              return 0;
-                           }
-                        }
-                     }
+                     return 0;
+                  }
+               }
                   }
                }
             }
-      }
+         }
+   }
     return 1;
 }
 //-------------------------------------------------------------------
