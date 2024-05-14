@@ -12,3 +12,13 @@ sudoku.c:69:30: error: void value not ignored as it ought to be
       |                              ^
 Compilation failed
 9ca708f
+Tue 14 May 2024 05:32:42 PM UTC: 
+ sudoku.c | 56 +++++++++++++++++++++++++++++++++++++-------------------
+ 1 file changed, 37 insertions(+), 19 deletions(-)
+In file included from test.c:5:
+sudoku.c: In function ‘get_adj_nodes’:
+sudoku.c:91:27: error: void value not ignored as it ought to be
+   91 |                      list = push(list, n);
+      |                           ^
+Compilation failed
+95cf33d
