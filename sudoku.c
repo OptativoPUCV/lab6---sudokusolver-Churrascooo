@@ -49,9 +49,30 @@ int is_valid(Node* n){
 }
 
 
-List* get_adj_nodes(Node* n){
-    List* list=createList();
-    return list;
+List* get_adj_nodes(Node* n)
+{
+   List* list=createList();
+   Node *copy(Node *n);
+   
+   int i, j;
+   if (n->sudo[i][j] == 0)
+   {
+      for (i = 1; i <= 9; i++)
+         {
+            for (j = 0 ; i <= 9; j++)
+               {
+                  if (n->sudo[i][j] == 0)
+                  {
+                     n->sudo[i][j] = i;
+                     if (is_valid(n))
+                     {
+                        list = push(list, n);
+                     }
+                  }
+               }
+         }
+   }
+   return list;
 }
 
 
