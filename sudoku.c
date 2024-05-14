@@ -96,7 +96,7 @@ List* get_adj_nodes(Node* n)
                      {
                         Node *copia = copy(n);
                         copia->sudo[i][j] = k;
-                        pushBack(list, copia)
+                        pushBack(list, copia);
                      }
                   }
                }
