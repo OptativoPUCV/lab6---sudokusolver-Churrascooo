@@ -63,21 +63,23 @@ int is_valid(Node* n)
                      //Si hay un número que se repite, el sudoku estará malo
                      return 0;
                   }
-      for (i = 0 ; i < 9 ; i++) //Recorro la fila)
-         {
-            for (j = 0 ; k < 9 ; k++)
-               {
-                  for (k = i+1 ; k < 9 ; k++)
-                  {
-                     if (n->sudo[i][j] == n->sudo[k][j])
-                     {
-                        //Si hay un número que se repite, el sudoku estará malo
-                        return 0;
-                     }
-                  }
                }
+            }
+      }
+   for (i = 0 ; i < 9 ; i++) //Recorro la fila)
+   {
+      for (j = 0 ; k < 9 ; k++)
+      {
+         for (k = i+1 ; k < 9 ; k++)
+         {
+            if (n->sudo[i][j] == n->sudo[k][j])
+            {
+               //Si hay un número que se repite, el sudoku estará malo
+               return 0;
+            }
          }
       }
+   }
     return 1;
 }
 //-------------------------------------------------------------------
