@@ -7,9 +7,10 @@ typedef struct{
    int sudo[9][9];
 }Node;
 //-------------------------------------------------------------------
-Node* createNode(){
-  Node* n=(Node*) malloc(sizeof(Node));
-  return n;
+Node* createNode()
+{
+   Node* n=(Node*) malloc(sizeof(Node));
+   return n;
 }
 //-------------------------------------------------------------------
 Node* copy(Node* n){
