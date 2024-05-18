@@ -169,18 +169,20 @@ Node* DFS(Node* initial, int* cont)
       {
          return n;
       }
-      Node *aux = first(aux);
+      List *adyacentes = get_adj_nodes(n);
+      Node *aux = first(adyacentes);
       while (aux != NULL)
       {
          push(S, aux);
-         aux = next(aux);
+         aux = next(adyacentes);
          if (is_final(aux))
          {
             cont++;
          }
       }
+      free(n);
    }
-   free(n);
+   return NULL;
 }
 //-------------------------------------------------------------------
 /*
