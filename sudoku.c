@@ -161,16 +161,20 @@ Node* DFS(Node* initial, int* cont)
    Stack *S = createStack();
    cont = 0;
    push(S, initial);
+   
    while (!is_empty(S))
    {
       Node *n = (Node *) top(S);
       pop(S);
+   
       if (is_final(n))
       {
          return n;
       }
+      
       List *adyacentes = get_adj_nodes(n);
       Node *aux = first(adyacentes);
+      
       while (aux != NULL)
       {
          push(S, aux);
@@ -179,8 +183,8 @@ Node* DFS(Node* initial, int* cont)
          {
             cont++;
          }
+         free(n);
       }
-      free(n);
    }
    return NULL;
 }
