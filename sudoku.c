@@ -119,13 +119,15 @@ List* get_adj_nodes(Node* n)
 {
    List* list=createList();
    int i, j, k;
+   int primeraCasilla = 0;
    for (i = 0; i < 9; i++)
    {
       for (j = 0 ; j < 9; j++)
       {
-         if (n->sudo[i][j] == 0)
+         if (n->sudo[i][j] == 0 && primeraCasilla == 0)
          {
-            for (k = 1 ; k <= 9 ; k++)
+            primeraCasilla = 1;
+            for (k = 1 ; k < 10 ; k++)
             {
                Node *copia = copy(n);
                copia->sudo[i][j] = k;
