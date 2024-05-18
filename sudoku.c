@@ -156,8 +156,31 @@ int is_final(Node* n)
     return 1;
 }
 //-------------------------------------------------------------------
-Node* DFS(Node* initial, int* cont){
-  return NULL;
+Node* DFS(Node* initial, int* cont)
+{
+   Stack *S = createStack();
+   cont = 0;
+   push(S, initial);
+   while (!is_empty(S))
+   {
+      Node *n = top(S);
+      pop(S);
+      if (is_final(n))
+      {
+         return n;
+      }
+      Node *aux = first(aux);
+      while (aux != NULL)
+      {
+         push(S, aux);
+         aux = next(aux);
+         if (is_final(aux))
+         {
+            cont++;
+         }
+      }
+   }
+   free(n);
 }
 //-------------------------------------------------------------------
 /*
