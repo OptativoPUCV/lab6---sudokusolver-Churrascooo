@@ -163,7 +163,7 @@ Node* DFS(Node* initial, int* cont)
    push(S, initial);
    while (!is_empty(S))
    {
-      Node *n = top(S);
+      Node *n = (Node *) top(S);
       pop(S);
       if (is_final(n))
       {
