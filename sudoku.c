@@ -49,50 +49,70 @@ int is_valid(Node* n)
    int i, j, k;
    for (i = 0 ; i < 9 ; i++) //Recorre fila
    {
+      int arrayFilas[10] = {0};
       for (j = 0 ; j < 9 ; j++) //Recorre columna
       {
-         if (n->sudo[i][j] != 0) //Si no está vacío
+         if (n->sudo[i][j] == 0)
          {
-            //Verificar fila
-            for (k = 0 ; k < 9 ; k++) //Revisa si el num está en fila o columna
-            {
-               if (n->sudo[i][j] == n->sudo[i][k] && k != j)
-               {
-                  return 0;
-               }
-            }
-            for (k = 0 ; k < 9 ; k++)
-            {
-               if (n->sudo[i][j] == n->sudo[k][j] && k != i)
-               {
-                  //Revisa si el num está en la fila
-                  return 0;
-               }
-            }
-            //Revisa la submatriz
-            for (int k = 0 ; k < 9 ; k++)
-            {
-               int arraySubmatrices[10] = {0};
-               for (int m = 0 ; m < 9 ; m++)
-               {
-                  int i = 3 * (k/3) + (m/3);         
-                  int j = 3 * (k%3) + (m%3);
-                  if (n->sudo[i][j] == 0)
-                  {
-                     continue;
-                  }
-                  if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9)
-                  {
-                     return 0;
-                  }
-                  if (arraySubmatrices[n->sudo[i][j]] != 0)
-                  {
-                     return 0;
-                  }
-                  arraySubmatrices[n->sudo[i][j]] = 1;
-               } 
-            }
-            return 1;
+            continue;
+         }
+         if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9)
+         {
+            return 0;
+         }
+         if (arrayFilas[n->sudo[i][j]] != 0)
+         {
+            return 0;
+         }
+         arrayFilas[n->sudo[i][j]] = 1;
+      }
+   }
+   for (i = 0 ; i < 9 ; i++) //Recorre fila
+   {
+      int arrayColumnas[10] = {0};
+      for (j = 0 ; j < 9 ; j++) //Recorre columna
+      {
+         if (n->sudo[i][j] == 0)
+         {
+            continue;
+         }
+         if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9)
+         {
+            return 0;
+         }
+         if (arrayColumnas[n->sudo[i][j]] != 0)
+         {
+            return 0;
+         }
+         arrayColumnas[n->sudo[i][j]] = 1;
+      }
+   }
+   
+   
+   //Revisa la submatriz
+   for (int k = 0 ; k < 9 ; k++)
+   {
+      int arraySubmatrices[10] = {0};
+      for (int m = 0 ; m < 9 ; m++)
+      {
+         int i = 3 * (k/3) + (m/3);         
+         int j = 3 * (k%3) + (m%3);
+         if (n->sudo[i][j] == 0)
+         {
+            continue;
+         }
+         if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9)
+         {
+            return 0;
+         }
+         if (arraySubmatrices[n->sudo[i][j]] != 0)
+         {
+            return 0;
+         }
+         arraySubmatrices[n->sudo[i][j]] = 1;
+         } 
+   }
+   return 1;
 }
 //-------------------------------------------------------------------
 List* get_adj_nodes(Node* n)
