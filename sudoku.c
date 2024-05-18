@@ -129,18 +129,13 @@ List* get_adj_nodes(Node* n)
             primeraCasilla = 1;
             for (k = 1 ; k < 10 ; k++)
             {
-               Node *copia = copy(n);
-               copia->sudo[i][j] = k;
-               if (is_valid(copia))
+               Node *adyacentes = copy(n);
+               adyacentes->sudo[i][j] = k;
+               if (is_valid(adyacentes) && primeraCasilla == 1)
                {
-                  pushBack(list, copia);
-               }
-               else
-               {
-                  free(copia);
+                  pushBack(list, adyacentes);
                }
             }
-            break;
          }
       }
    }
