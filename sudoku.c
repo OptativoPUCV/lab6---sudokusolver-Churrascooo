@@ -70,23 +70,29 @@ int is_valid(Node* n)
                }
             }
             //Revisa la submatriz
-            int a, b;
-            int fila = (i/3) * 3;
-            int columna = (j/3) * 3;
-            for (a = fila ; a < fila + 3 ; a++)
+            for (int k = 0 ; k < 9 ; k++)
             {
-               for (b = columna ; b < columna + 3 ; b++)
-               {               
-                  if (n->sudo[i][j] == n->sudo[a][b] && !(a == i && b == j))
+               int arraySubmatrices[10] = {0};
+               for (int m = 0 ; m < 9 ; m++)
+               {
+                  int i = 3 * (k/3) + (m/3);         
+                  int j = 3 * (k%3) + (m%3);
+                  if (n->sudo[i][j] == 0)
+                  {
+                     continue;
+                  }
+                  if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9)
                   {
                      return 0;
                   }
-               }
+                  if (arraySubmatrices[n->sudo[i][j]] != 0)
+                  {
+                     return 0;
+                  }
+                  arraySubmatrices[n->sudo[i][j]] = 1;
+               } 
             }
-         }
-      } 
-   }
-    return 1;
+            return 1;
 }
 //-------------------------------------------------------------------
 List* get_adj_nodes(Node* n)
