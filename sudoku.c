@@ -67,24 +67,25 @@ int is_valid(Node* n)
          arrayFilas[n->sudo[i][j]] = 1;
       }
    }
-   for (i = 0 ; i < 9 ; i++) //Recorre fila
+   
+   for (i = 0 ; i < 9 ; i++)
    {
       int arrayColumnas[10] = {0};
-      for (j = 0 ; j < 9 ; j++) //Recorre columna
+      for (j = 0 ; j < 9 ; j++)
       {
-         if (n->sudo[i][j] == 0)
+         if (n->sudo[j][i] == 0)
          {
             continue;
          }
-         if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9)
+         if (n->sudo[j][i] < 1 || n->sudo[j][i] > 9)
          {
             return 0;
          }
-         if (arrayColumnas[n->sudo[i][j]] != 0)
+         if (arrayColumnas[n->sudo[j][i]] != 0)
          {
             return 0;
          }
-         arrayColumnas[n->sudo[i][j]] = 1;
+         arrayColumnas[n->sudo[j][i]] = 1;
       }
    }
    
